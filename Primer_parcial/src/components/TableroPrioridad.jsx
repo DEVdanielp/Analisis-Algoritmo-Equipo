@@ -3,13 +3,6 @@ import { useCountingSort } from '../hooks/useCountingSort.js'
 import { PRIORIDADES } from '../utils/priorities.js'
 import TaskCard from './TaskCard.jsx'
 
-/**
- * TableroPrioridad.jsx — Fase 2 · Algoritmo (Daniel)
- *
- * Vista tipo Kanban con 3 columnas (Alta / Media / Baja). Usa
- * `useCountingSort` para ordenar las tareas y luego las agrupa por
- * prioridad para armar cada columna.
- */
 export default function TableroPrioridad() {
   const { tasks } = useTasks()
 
