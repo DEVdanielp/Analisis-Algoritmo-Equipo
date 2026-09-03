@@ -1,5 +1,7 @@
 import { useReducer } from 'react'
 import { mockTasks } from '../data/mockTasks.js'
+import { porFecha } from '../utils/comparators.js'
+import { useInsertionSort } from './useInsertionSort.js'
 
 /**
  * useTasks.js — TODO(Samuel): Fase 1 · Cimientos
@@ -11,39 +13,40 @@ import { mockTasks } from '../data/mockTasks.js'
  *   - eliminarTarea(id)
  *
  * Implementalo con useReducer (acciones AGREGAR / EDITAR / ELIMINAR).
- * Los tres casos de abajo son placeholders seguros: no rompen la app,
- * pero tampoco hacen nada todavía.
- *
- * Ojo: cuando termines hooks/useInsertionSort.js (también tuyo, en la
- * Fase 2), la acción AGREGAR es el lugar natural para usarlo — en vez
- * de un push() simple, inserta la tarea nueva ya en su posición
- * ordenada dentro de la lista.
+ * Las tareas se mantienen ordenadas por fecha para que las vistas puedan
+ * reutilizar el estado sin volver a ordenar toda la lista.
  */
 
 function tasksReducer(state, action) {
   switch (action.type) {
     case 'AGREGAR':
-      // TODO(Samuel): insertar `action.payload` en `state`.
-      console.warn('useTasks: AGREGAR sin implementar todavía')
-      return state
+      return useInsertionSort(state, action.payload, porFecha)
 
     case 'EDITAR':
-      // TODO(Samuel): reemplazar los campos de la tarea con id === action.payload.id
-      console.warn('useTasks: EDITAR sin implementar todavía')
-      return state
+      {
+        const tarea = state.find((task) => task.id === action.payload.id)
+        if (!tarea) return state
+
+        const actualizada = { ...tarea, ...action.payload }
+        const restantes = state.filter((task) => task.id !== tarea.id)
+        return useInsertionSort(restantes, actualizada, porFecha)
+      }
 
     case 'ELIMINAR':
-      // TODO(Samuel): quitar la tarea con id === action.payload.id
-      console.warn('useTasks: ELIMINAR sin implementar todavía')
-      return state
+      return state.filter((task) => task.id !== action.payload.id)
 
     default:
       return state
   }
 }
 
+const initialTasks = mockTasks.reduce(
+  (orderedTasks, task) => useInsertionSort(orderedTasks, task, porFecha),
+  [],
+)
+
 export function useTasksState() {
-  const [tasks, dispatch] = useReducer(tasksReducer, mockTasks)
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks)
 
   const agregarTarea = (tarea) => dispatch({ type: 'AGREGAR', payload: tarea })
   const editarTarea = (id, cambios) => dispatch({ type: 'EDITAR', payload: { id, ...cambios } })

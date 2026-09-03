@@ -15,7 +15,14 @@
  * ordenarías una carta nueva dentro de una mano de cartas ya ordenada.
  */
 export function useInsertionSort(items, nuevoItem, compareFn) {
-  // TODO(Samuel): reemplazar este placeholder por la inserción real.
-  console.warn('useInsertionSort: todavía no implementado — se agrega al final sin ordenar')
-  return [...items, nuevoItem]
+  const resultado = [...items, nuevoItem]
+  let indice = resultado.length - 1
+
+  while (indice > 0 && compareFn(resultado[indice - 1], nuevoItem) > 0) {
+    resultado[indice] = resultado[indice - 1]
+    indice -= 1
+  }
+
+  resultado[indice] = nuevoItem
+  return resultado
 }
