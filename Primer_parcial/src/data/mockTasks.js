@@ -11,7 +11,7 @@
  * Ya quedaron 3 tareas de ejemplo para que el proyecto arranque y se
  * pueda ver algo en pantalla. TODO: completar hasta tener al menos 8,
  * variando prioridad y fecha (necesitás datos variados para que el
- * benchmark y las 3 vistas tengan sentido al probarlas).
+ *  y las 3 vistas tengan sentido al probarlas).
  */
 
 /** @type {Task[]} */

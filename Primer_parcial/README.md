@@ -20,7 +20,6 @@ Cada archivo listado abajo tiene un comentario `TODO(Nombre)` al principio expli
 - `src/data/mockTasks.js` — completar hasta 8 tareas de ejemplo
 - `src/hooks/useMergeSort.js` — el algoritmo
 - `src/components/Toolbar.jsx` — ya conectado, solo depende del hook
-- `src/components/Benchmark.jsx` — panel de comparación de rendimiento
 
 ### Samuel — Insertion Sort
 
@@ -44,7 +43,7 @@ Cada archivo listado abajo tiene un comentario `TODO(Nombre)` al principio expli
 
 1. **Cimientos** (los tres en paralelo): modelo de datos, `useTasks`, layout — sin esto, nada más funciona.
 2. **Algoritmos** (los tres en paralelo, cada uno en su rama): implementar el hook propio y ver la vista correspondiente cobrar vida.
-3. **Integración**: pruebas de casos borde (vacío, 1 elemento, duplicados, ya ordenado, orden inverso), benchmark, pulido y demo.
+3. **Integración**: pruebas de casos borde (vacío, 1 elemento, duplicados, ya ordenado, orden inverso), pulido y demo.
 
 ## Regla del proyecto
 
