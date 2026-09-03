@@ -1,20 +1,58 @@
 /**
- * useMergeSort.js — TODO(Manuela): Fase 2 · Algoritmo
+ * useMergeSort.js — Fase 2 · Algoritmo (Manuela)
  *
- * Ordenamiento general de la app. Debe ordenar `items` según
- * `compareFn` usando el algoritmo Merge Sort implementado a mano —
- * SIN usar Array.prototype.sort — dividiendo el arreglo recursivamente
- * y combinando (merge) las mitades ya ordenadas.
+ * Ordenamiento general de la app. Ordena `items` según `compareFn`
+ * usando Merge Sort implementado a mano — sin Array.prototype.sort —
+ * dividiendo el arreglo recursivamente y combinando (merge) las
+ * mitades ya ordenadas.
  *
  * Firma esperada:
  *   useMergeSort(items: Task[], compareFn: (a, b) => number): Task[]
  *
- * Debe ser estable: si compareFn devuelve 0 para dos tareas, deben
- * conservar su orden relativo original. Debe devolver un arreglo
- * NUEVO — no mutar `items`.
+ * Estable: si compareFn devuelve 0 para dos tareas, conservan su orden
+ * relativo original. Devuelve un arreglo NUEVO — no muta `items`.
  */
+
+function merge(izquierda, derecha, compareFn) {
+  const resultado = []
+  let i = 0
+  let j = 0
+
+  while (i < izquierda.length && j < derecha.length) {
+    if (compareFn(izquierda[i], derecha[j]) <= 0) {
+      resultado.push(izquierda[i])
+      i++
+    } else {
+      resultado.push(derecha[j])
+      j++
+    }
+  }
+
+  while (i < izquierda.length) {
+    resultado.push(izquierda[i])
+    i++
+  }
+
+  while (j < derecha.length) {
+    resultado.push(derecha[j])
+    j++
+  }
+
+  return resultado
+}
+
+function mergeSort(items, compareFn) {
+  if (items.length <= 1) {
+    return items
+  }
+
+  const medio = Math.floor(items.length / 2)
+  const izquierda = mergeSort(items.slice(0, medio), compareFn)
+  const derecha = mergeSort(items.slice(medio), compareFn)
+
+  return merge(izquierda, derecha, compareFn)
+}
+
 export function useMergeSort(items, compareFn) {
-  // TODO(Manuela): reemplazar este placeholder por merge sort real.
-  console.warn('useMergeSort: todavía no implementado — se devuelve la lista sin ordenar')
-  return [...items]
+  return mergeSort(items, compareFn)
 }
