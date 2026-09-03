@@ -1,25 +1,16 @@
 import { useTasks } from '../context/TasksContext.jsx'
-import { useCountingSort, agruparPorPrioridad } from '../hooks/useCountingSort.js'
+import { useCountingSort } from '../hooks/useCountingSort.js'
 import { PRIORIDADES } from '../utils/priorities.js'
 import TaskCard from './TaskCard.jsx'
 
-/**
- * TableroPrioridad.jsx — TODO(Daniel): Fase 2 · Algoritmo
- *
- * Vista tipo Kanban con 3 columnas (Alta / Media / Baja). Por ahora
- * agrupa las tareas con el helper `agruparPorPrioridad` (ya
- * implementado) para que el tablero se vea completo desde el día uno.
- *
- * Una vez que implementes hooks/useCountingSort.js de verdad, cambiá
- * la línea de abajo para usar su resultado en vez del helper —
- * la diferencia es que tu hook además deja las tareas ordenadas
- * dentro de cada columna, no solo agrupadas.
- */
 export default function TableroPrioridad() {
   const { tasks } = useTasks()
 
-  // TODO(Daniel): reemplazar por: const ordenadas = useCountingSort(tasks, 'prioridad')
-  const grupos = agruparPorPrioridad(tasks)
+  const ordenadas = useCountingSort(tasks, 'prioridad')
+  const grupos = PRIORIDADES.reduce((acc, prioridad) => {
+    acc[prioridad] = ordenadas.filter((task) => task.prioridad === prioridad)
+    return acc
+  }, {})
 
   return (
     <div className="panel">

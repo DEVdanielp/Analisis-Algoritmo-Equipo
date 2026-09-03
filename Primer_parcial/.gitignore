@@ -2,4 +2,9 @@ node_modules
 dist
 .DS_Store
 *.local
+<<<<<<< HEAD
 SAMUEL.md
+=======
+MANUELA.md
+NOTAS_DANIEL.md
+>>>>>>> 42935089fc3928b41430451c6d1d4080530a0988
