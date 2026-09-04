@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Toolbar from './components/Toolbar.jsx'
 import FormularioTarea from './components/FormularioTarea.jsx'
 import TableroPrioridad from './components/TableroPrioridad.jsx'
+import TareasSinOrdenar from './components/TareasSinOrdenar.jsx'
 
 /**
  * App.jsx — infraestructura compartida (nadie necesita editar este archivo).
@@ -15,6 +16,7 @@ import TableroPrioridad from './components/TableroPrioridad.jsx'
 const TABS = [
   { id: 'general', label: 'Lista general', owner: 'Manuela · Merge Sort', Component: Toolbar },
   { id: 'agregar', label: 'Agregar tarea', owner: 'Samuel · Insertion Sort', Component: FormularioTarea },
+  { id: 'sin-ordenar', label: 'Sin ordenar', owner: 'Daniel · Counting Sort', Component: TareasSinOrdenar },
   { id: 'prioridad', label: 'Tablero por prioridad', owner: 'Daniel · Counting Sort', Component: TableroPrioridad },
 ]
 
