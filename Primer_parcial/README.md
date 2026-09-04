@@ -5,6 +5,8 @@
 
 Una empresa no cuenta con un sistema para ordenar y priorizar sus tareas, por lo que no se cumplen las métricas del equipo. Como respuesta, se proponen 3 formas de ordenar esas mismas tareas — cada una resuelta con un algoritmo de ordenamiento distinto — para comparar enfoques y cubrir cada vista de la app (lista general, alta de tareas y tablero por prioridad).
 
+## Link del video
+
 ## Algoritmo usado
 
 Algoritmos de ordenamiento, implementados a mano (sin `Array.prototype.sort`), uno por integrante:
