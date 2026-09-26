@@ -1,0 +1,85 @@
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --texto: #1d2330;
+  --suave: #5f6778;
+  --borde: #dde1e8;
+  --via: #b8bfcc;
+  --c-corta: #13a36e;
+  --c-optima: #2563eb;
+  --c-larga: #e8750c;
+  --barrio: #475569;
+  --clinica: #dc2626;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--texto);
+  background: var(--bg);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11151c;
+    --panel: #1a2029;
+    --texto: #e6e9ef;
+    --suave: #9aa3b2;
+    --borde: #2c3440;
+    --via: #3d4755;
+    --barrio: #94a3b8;
+    --c-optima: #60a5fa;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); }
+.app { max-width: 1280px; margin: 0 auto; padding: 24px 16px 48px; }
+.cabecera h1 { margin: 0 0 4px; font-size: 1.6rem; }
+.cabecera p { margin: 0 0 20px; color: var(--suave); }
+.contenido { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 900px) { .contenido { grid-template-columns: 1fr; } }
+.columna-izq, .columna-der { display: grid; gap: 16px; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--borde); border-radius: 12px; padding: 16px; }
+.panel h3 { margin: 0 0 8px; font-size: 1rem; }
+
+.selector { display: grid; gap: 12px; }
+.selector label { display: grid; gap: 4px; font-weight: 600; font-size: 0.9rem; }
+.selector em { font-weight: 400; color: var(--suave); }
+select, button { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--borde); background: var(--panel); color: var(--texto); }
+button { cursor: pointer; }
+button.primario { background: var(--c-optima); border-color: var(--c-optima); color: #fff; font-weight: 600; }
+.acciones { display: flex; gap: 8px; }
+.error { color: var(--clinica); margin: 0; }
+.ayuda { margin: 0; color: var(--suave); font-size: 0.85rem; }
+
+.mapa svg { width: 100%; height: auto; display: block; }
+.arista line { stroke: var(--via); }
+.arista .peso { font-size: 9px; fill: var(--suave); text-anchor: middle; }
+.nodo circle { fill: var(--barrio); stroke: var(--panel); stroke-width: 2; }
+.nodo rect { fill: var(--clinica); stroke: var(--panel); stroke-width: 2; }
+.nodo .cruz { fill: #fff; font-size: 14px; font-weight: 700; text-anchor: middle; }
+.nodo .etiqueta { font-size: 11px; fill: var(--texto); paint-order: stroke; stroke: var(--panel); stroke-width: 3px; }
+.nodo.activo .etiqueta { font-weight: 700; }
+.nodo.origen circle { fill: var(--c-corta); }
+.nodo.destino rect { stroke: var(--texto); stroke-width: 3; }
+.leyenda { display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.8rem; color: var(--suave); margin-top: 8px; }
+.punto { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: middle; }
+.punto.barrio { background: var(--barrio); }
+.punto.clinica { background: var(--clinica); border-radius: 2px; }
+
+.tarjetas { display: grid; gap: 12px; }
+.tarjeta { border-top: 5px solid; }
+.tarjeta.apagada { opacity: 0.55; }
+.tarjeta header { display: flex; justify-content: space-between; align-items: center; }
+.tarjeta .desc { margin: 0 0 8px; color: var(--suave); font-size: 0.85rem; }
+.tarjeta .destino { margin: 0 0 8px; font-weight: 600; }
+.interruptor { font-size: 0.85rem; display: flex; gap: 4px; align-items: center; cursor: pointer; }
+.metricas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 0 0 8px; }
+@media (max-width: 500px) { .metricas { grid-template-columns: repeat(2, 1fr); } }
+.metricas dt { font-size: 0.72rem; color: var(--suave); }
+.metricas dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+.camino { display: flex; flex-wrap: wrap; gap: 4px 0; padding: 0; margin: 0 0 8px; list-style: none; font-size: 0.85rem; }
+.camino li:not(:last-child)::after { content: '→'; margin: 0 6px; color: var(--suave); }
+.algoritmo { margin: 0; font-size: 0.78rem; color: var(--suave); }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--borde); }
+th { color: var(--suave); font-weight: 600; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr.resaltada td { font-weight: 700; }
+.vacio ol { margin: 0; padding-left: 20px; color: var(--suave); line-height: 1.7; }
