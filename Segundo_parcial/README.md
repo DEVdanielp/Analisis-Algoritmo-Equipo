@@ -32,6 +32,9 @@ Ante una urgencia, una persona o una ambulancia necesita saber **a qué clínica
 - **BFS** cuenta el número mínimo de tramos hasta cada clínica y confirma que todas son alcanzables.
 - **`PriorityQueue`** es un min-heap propio usado por Dijkstra y A\*.
 
+### 2.3 Video: 
+https://drive.google.com/file/d/1jW68tD-Vi5ID-AXTP1i7fyfE1C2JN2eE/view?usp=sharing
+
 ## 3. Cómo ejecutar
 
 Los tres zip comparten la misma estructura de carpetas. Descomprímelos **en la misma carpeta**:
