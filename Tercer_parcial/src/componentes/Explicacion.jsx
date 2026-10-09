@@ -1,24 +1,25 @@
 export default function Explicacion() {
   return (
     <section className="tarjeta">
-      <h2>Algoritmo: Mochila 0/1 con Programación Dinámica</h2>
+      <h2>Algoritmo: Cambio de Monedas con Programación Dinámica</h2>
 
       <h3>Estado (subproblema)</h3>
-      <div className="formula">dp[i][h] = máximo de puntos usando solo los primeros i temas con h horas</div>
+      <div className="formula">dp[v] = mínimo número de monedas para formar exactamente el valor v</div>
 
       <h3>Casos base</h3>
-      <div className="formula">{`dp[0][h] = 0   → sin temas no hay puntos
-dp[i][0] = 0   → sin horas no se estudia nada`}</div>
+      <div className="formula">{`dp[0] = 0     → un vuelto de $0 no necesita monedas
+dp[v] = ∞     → valor inicial para v > 0 (aún no se sabe formar)`}</div>
 
       <h3>Relación de recurrencia</h3>
-      <div className="formula">{`si horas_i > h:   dp[i][h] = dp[i-1][h]
-si no:            dp[i][h] = max( dp[i-1][h],
-                                  dp[i-1][h - horas_i] + puntos_i )`}</div>
+      <div className="formula">{`dp[v] = min( dp[v - c] + 1 )    para cada moneda c ≤ v
+
+"Si la última moneda que entrego es c, lo que falta (v - c)
+ ya está resuelto de forma óptima en la tabla."`}</div>
 
       <h3>Respuesta y complejidad</h3>
-      <div className="formula">{`Respuesta: dp[n][H]
-Tiempo: O(n · H)     Espacio: O(n · H)
-Fuerza bruta: O(2ⁿ · n)`}</div>
+      <div className="formula">{`Respuesta: dp[V]   (si es ∞ → el vuelto es imposible)
+Tiempo: O(V · m)    Espacio: O(V)      m = número de denominaciones
+Fuerza bruta (recursión sin memoria): exponencial`}</div>
     </section>
   );
 }
