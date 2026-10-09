@@ -1,0 +1,126 @@
+h3 {
+  font-size: 0.95rem;
+  margin: 18px 0 8px;
+  color: var(--texto-suave);
+}
+
+.nota { color: var(--texto-suave); font-size: 0.9rem; margin: 0 0 12px; }
+.nota.aviso { color: var(--aviso); }
+
+input {
+  font: inherit;
+  color: var(--texto);
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 6px 10px;
+  max-width: 170px;
+}
+input:focus { outline: 2px solid var(--acento); outline-offset: 1px; }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  background: var(--acento);
+  color: #fff;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.boton-icono { background: transparent; color: var(--texto-suave); padding: 2px 6px; font-size: 0.8rem; }
+.boton-icono:hover { color: #d14343; }
+
+.fila-campos { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+/* --- Escenarios --- */
+.escenarios { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.chip {
+  background: transparent;
+  color: var(--texto);
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+.chip.activo { background: var(--acento); border-color: var(--acento); color: #fff; }
+
+/* --- Monedas --- */
+.monedero { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-height: 52px; }
+.moneda-editable { display: inline-flex; align-items: center; }
+.moneda {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #5b4300;
+  background: radial-gradient(circle at 35% 30%, #fff3c4, #e8c252 60%, #c79a26);
+  border: 2px solid #b48a1e;
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.35);
+}
+
+/* --- Arreglo DP --- */
+.arreglo-dp { display: grid; grid-template-columns: repeat(auto-fill, minmax(62px, 1fr)); gap: 6px; }
+.celda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 4px;
+  border-radius: 8px;
+  background: var(--superficie);
+  color: var(--texto);
+  border: 1px solid var(--borde);
+  font-family: var(--mono);
+  font-weight: 400;
+  cursor: crosshair;
+}
+.celda .valor { font-size: 0.68rem; color: var(--texto-suave); }
+.celda .resultado { font-size: 1.05rem; font-weight: 700; }
+.celda.base { background: var(--fondo); }
+.celda.infinito .resultado { color: var(--texto-suave); font-weight: 400; }
+.celda.camino { background: var(--exito-suave); border-color: var(--exito); }
+.celda.camino .resultado { color: var(--exito); }
+.celda.objetivo { box-shadow: 0 0 0 2px var(--aviso); }
+.celda.activa { outline: 2px solid var(--acento); outline-offset: 1px; }
+
+.explicacion {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--acento-suave);
+  font-size: 0.82rem;
+  min-height: 42px;
+  overflow-x: auto;
+}
+
+.leyenda { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 10px; font-size: 0.82rem; color: var(--texto-suave); }
+.leyenda span { display: flex; align-items: center; gap: 6px; }
+.muestra { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--borde); display: inline-block; }
+.muestra.base { background: var(--fondo); }
+.muestra.infinito { background: var(--superficie); }
+.muestra.camino { background: var(--exito-suave); border-color: var(--exito); }
+.muestra.objetivo { border: 2px solid var(--aviso); }
+
+/* --- Resultados --- */
+.comparacion { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.columna-resultado { border: 1px solid var(--borde); border-radius: 10px; padding: 14px 16px; }
+.columna-resultado h3 { margin-top: 0; color: var(--texto); }
+.columna-resultado .cantidad { display: block; font-size: 1.4rem; margin-bottom: 10px; }
+.columna-resultado.mejor { border-color: var(--exito); background: var(--exito-suave); }
+.columna-resultado.mejor .cantidad { color: var(--exito); }
+.columna-resultado.fallo .cantidad { color: #d14343; }
+
+.conclusion { margin: 16px 0; font-weight: 600; }
+.conclusion.destacada { color: var(--exito); }
+
+.metricas { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.metrica { border: 1px solid var(--borde); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; }
+.metrica span { font-size: 0.78rem; color: var(--texto-suave); }
+.metrica strong { font-size: 1.4rem; font-family: var(--mono); }
