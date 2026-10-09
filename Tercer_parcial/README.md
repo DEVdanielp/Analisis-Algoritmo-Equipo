@@ -80,5 +80,5 @@ Para cada `v` se guarda `ultimaMoneda[v]`, la moneda que dio el mínimo. Partien
 
 ## 🎥 Video de sustentación
 
-👉 **[Ver video de sustentación](PEGAR_AQUI_EL_ENLACE_DEL_VIDEO)**
+👉 **[Ver video de sustentación](https://drive.google.com/file/d/1vIsBm8ZsS0JAIbr6I6wVW8chz5-cav8y/view?usp=sharing)**
 
