@@ -1,36 +1,30 @@
-# Planificador de Estudio con Programación Dinámica
+# Máquina de Vueltos con Programación Dinámica
 
 **Examen 3 – Análisis de Algoritmos · Opción 1 (Desarrollo)**
 
-Aplicación web en **React + Vite** que resuelve un problema de planificación de estudio usando el algoritmo de la **Mochila 0/1 (0/1 Knapsack)** con Programación Dinámica.
+Aplicación web en **React + Vite** que calcula cómo debe entregar el vuelto una máquina expendedora usando la **menor cantidad de monedas posible**. Usa el algoritmo de **Cambio de Monedas (Coin Change)** con Programación Dinámica y lo compara con el método voraz.
 
 ## 👥 Integrantes
 
 | Integrante | Aporte |
 |---|---|
 | Persona 1 | Estructura del proyecto (React + Vite), estilos base, planteamiento del problema |
-| Persona 2 | Algoritmo de Programación Dinámica, pruebas automáticas, explicación de estados / recurrencia / casos base |
-| Persona 3 | Interfaz interactiva: formulario, visualización de la tabla DP, resultados y verificación |
+| Persona 2 | Algoritmo de Programación Dinámica, método voraz, fuerza bruta, pruebas y explicación de estados / recurrencia / casos base |
+| Persona 3 | Interfaz interactiva: escenarios y monedero, visualización de la tabla DP, comparación de resultados |
 
 ## 📌 El problema
 
-Es la semana de parciales y un estudiante solo tiene **H horas libres** antes del examen. Hay varios temas que podría estudiar; cada tema:
+La máquina expendedora de la cafetería de la universidad debe devolver vueltos. Para no quedarse sin monedas rápido, debe entregar **la menor cantidad de monedas posible**, y solo puede usar las denominaciones que tenga disponibles en ese momento.
 
-- toma un número de **horas** en estudiarse (el *peso*), y
-- aporta una cantidad de **puntos** en el examen (el *valor*).
+Lo normal sería hacerlo "a ojo": entregar siempre la moneda más grande que quepa (**método voraz**). Pero eso no siempre funciona:
 
-Un tema se estudia completo o no se estudia (no sirve estudiarlo a medias). **¿Qué temas debe estudiar para obtener el máximo puntaje posible sin pasarse de las horas disponibles?**
+> La máquina **se quedó sin monedas de $50 y $100**. Solo tiene monedas de **$200, $500 y $1.000**.
+> Un estudiante compra un producto de **$3.400** y paga con **$5.000**: el vuelto es **$1.600**.
+>
+> - **Voraz:** entrega $1.000, luego $500 (van $1.500)… y faltan $100 que no puede formar. **No encuentra solución.**
+> - **Correcto:** $1.000 + $200 + $200 + $200 = **4 monedas.**
 
-### Datos del ejemplo (H = 12 horas)
-
-| # | Tema | Horas | Puntos |
-|---|---|---|---|
-| 1 | Programación dinámica | 6 | 30 |
-| 2 | Grafos (BFS / DFS) | 4 | 18 |
-| 3 | Ordenamiento | 2 | 8 |
-| 4 | Notación Big-O | 3 | 14 |
-| 5 | Divide y vencerás | 5 | 20 |
-| 6 | Algoritmos voraces | 4 | 16 |
+**¿Cómo encontrar siempre la cantidad mínima de monedas, o saber con certeza que el vuelto es imposible?**
 
 ## ▶️ Cómo ejecutar
 
