@@ -1,3 +1,9 @@
+import { cambioMinimo, cambioVoraz } from './algoritmo/cambio.js';
+import { ESCENARIOS } from './algoritmo/datosEjemplo.js';
+import Explicacion from './componentes/Explicacion.jsx';
+
+const texto = (r) => (r.posible ? `${r.cantidad} monedas (${r.monedasUsadas.join(' + ')})` : 'sin solución');
+
 export default function App() {
   return (
     <main className="contenedor">
@@ -11,17 +17,17 @@ export default function App() {
         </p>
       </header>
 
+      <Explicacion />
+
       <section className="tarjeta">
-        <h2>Planteamiento</h2>
-        <p>
-          La máquina se quedó sin monedas de $50 y $100: solo tiene <code>$200</code>, <code>$500</code> y{' '}
-          <code>$1.000</code>. Hay que devolver <strong>$1.600</strong>.
-        </p>
-        <p>
-          Si entrega siempre la moneda más grande (método voraz) da $1.000 + $500 y le faltan $100 que no puede
-          formar. Pero sí existe una solución: $1.000 + $200 + $200 + $200 = <strong>4 monedas</strong>.
-          Necesitamos un algoritmo que siempre encuentre el mínimo: el problema del <strong>Cambio de Monedas</strong>.
-        </p>
+        <h2>Resultados de los escenarios de ejemplo</h2>
+        {ESCENARIOS.map((e) => (
+          <p key={e.id}>
+            <strong>{e.nombre}</strong> — vuelto {e.monto} con monedas [{e.monedas.join(', ')}]
+            <br />
+            DP: {texto(cambioMinimo(e.monedas, e.monto))} · Voraz: {texto(cambioVoraz(e.monedas, e.monto))}
+          </p>
+        ))}
       </section>
     </main>
   );
