@@ -1,4 +1,30 @@
+import { useMemo, useState } from 'react';
+import { cambioMinimo, cambioVoraz, cambioFuerzaBruta } from './algoritmo/cambio.js';
+import { ESCENARIO_INICIAL } from './algoritmo/datosEjemplo.js';
+import Explicacion from './componentes/Explicacion.jsx';
+import FormularioMonedas from './componentes/FormularioMonedas.jsx';
+import TablaDP from './componentes/TablaDP.jsx';
+import Resultados from './componentes/Resultados.jsx';
+import './componentes/componentes.css';
+
+// La fuerza bruta es exponencial: la detenemos al llegar a este número de llamadas.
+const LIMITE_FUERZA_BRUTA = 2_000_000;
+
 export default function App() {
+  const [monedas, setMonedas] = useState(ESCENARIO_INICIAL.monedas);
+  const [monto, setMonto] = useState(ESCENARIO_INICIAL.monto);
+  const [escenarioId, setEscenarioId] = useState(ESCENARIO_INICIAL.id);
+
+  // Se recalcula cada vez que cambian las monedas o el vuelto.
+  const dp = useMemo(() => cambioMinimo(monedas, monto), [monedas, monto]);
+  const voraz = useMemo(() => cambioVoraz(monedas, monto), [monedas, monto]);
+  const bruta = useMemo(() => {
+    // Con vueltos enormes la recursión sería demasiado profunda: ni siquiera la intentamos.
+    const profundidad = monto / Math.min(...monedas);
+    if (profundidad > 2000) return { llamadas: LIMITE_FUERZA_BRUTA, excedido: true };
+    return cambioFuerzaBruta(monedas, monto, LIMITE_FUERZA_BRUTA);
+  }, [monedas, monto]);
+
   return (
     <main className="contenedor">
       <header className="encabezado">
@@ -11,18 +37,17 @@ export default function App() {
         </p>
       </header>
 
-      <section className="tarjeta">
-        <h2>Planteamiento</h2>
-        <p>
-          La máquina se quedó sin monedas de $50 y $100: solo tiene <code>$200</code>, <code>$500</code> y{' '}
-          <code>$1.000</code>. Hay que devolver <strong>$1.600</strong>.
-        </p>
-        <p>
-          Si entrega siempre la moneda más grande (método voraz) da $1.000 + $500 y le faltan $100 que no puede
-          formar. Pero sí existe una solución: $1.000 + $200 + $200 + $200 = <strong>4 monedas</strong>.
-          Necesitamos un algoritmo que siempre encuentre el mínimo: el problema del <strong>Cambio de Monedas</strong>.
-        </p>
-      </section>
+      <Explicacion />
+      <FormularioMonedas
+        monedas={monedas}
+        setMonedas={setMonedas}
+        monto={monto}
+        setMonto={setMonto}
+        escenarioId={escenarioId}
+        setEscenarioId={setEscenarioId}
+      />
+      <TablaDP monedas={monedas} monto={monto} resultado={dp} />
+      <Resultados monto={monto} dp={dp} voraz={voraz} bruta={bruta} />
     </main>
   );
 }
