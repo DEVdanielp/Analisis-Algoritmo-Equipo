@@ -26,13 +26,59 @@ Lo normal sería hacerlo "a ojo": entregar siempre la moneda más grande que que
 
 **¿Cómo encontrar siempre la cantidad mínima de monedas, o saber con certeza que el vuelto es imposible?**
 
-## ▶️ Cómo ejecutar
 
-Requisitos: Node.js 18 o superior.
+## 🧠 Algoritmo: Cambio de Monedas con Programación Dinámica
 
-```bash
-npm install
-npm run dev      # abre http://localhost:5173
-npm test         # ejecuta las pruebas del algoritmo
-npm run build    # genera la versión de producción
+Una solución recursiva ingenua prueba todas las formas de armar el vuelto: para cada moneda posible vuelve a resolver lo que falta, y así sucesivamente. Esto repite el mismo cálculo una y otra vez y crece de forma **exponencial**. El problema cumple las dos propiedades de la Programación Dinámica:
+
+1. **Subestructura óptima:** si la forma óptima de dar *v* termina con una moneda *c*, entonces el resto (*v − c*) también debe estar dado de forma óptima.
+2. **Subproblemas superpuestos:** para dar $1.600 hay que saber dar $1.400, $1.100 y $600; para dar $1.400 hay que saber dar $1.200, $900 y $400… Los mismos valores aparecen muchas veces. Se calculan **una sola vez** y se guardan en una tabla.
+
+### Estado (subproblema)
+
 ```
+dp[v] = mínimo número de monedas para formar exactamente el valor v
+        (∞ si v no se puede formar)
+```
+
+La tabla es un arreglo de `V + 1` posiciones (de 0 hasta el vuelto pedido).
+
+### Casos base
+
+```
+dp[0] = 0    → un vuelto de $0 no necesita monedas
+dp[v] = ∞    → valor inicial para todo v > 0 (todavía no sabemos formarlo)
+```
+
+### Relación de recurrencia
+
+```
+dp[v] = min( dp[v - c] + 1 )     para cada moneda c con c ≤ v
+```
+
+Se prueba cada moneda como **la última que se entrega**: si se entrega *c*, lo que falta (*v − c*) ya está resuelto de forma óptima en la tabla, y se suma 1 por la moneda *c*. Se queda el mínimo.
+
+**Respuesta:** `dp[V]`. Si es ∞, el vuelto es imposible con esas monedas.
+
+### Reconstrucción de la solución
+
+Para cada `v` se guarda `ultimaMoneda[v]`, la moneda que dio el mínimo. Partiendo de `V` se resta esa moneda, luego la del nuevo valor, y así hasta llegar a 0:
+
+```
+1600 →(−200)→ 1400 →(−200)→ 1200 →(−200)→ 1000 →(−1000)→ 0
+```
+
+### Complejidad
+
+| Enfoque | Tiempo | Espacio | ¿Óptimo? |
+|---|---|---|---|
+| Voraz | O(V / c_min + m log m) | O(1) | ❌ No siempre |
+| Fuerza bruta (recursión sin memoria) | Exponencial | O(V) | ✅ |
+| **Programación Dinámica** | **O(V · m)** | **O(V)** | ✅ |
+
+*m* = número de denominaciones.
+
+## 🎥 Video de sustentación
+
+👉 **[Ver video de sustentación](PEGAR_AQUI_EL_ENLACE_DEL_VIDEO)**
+
