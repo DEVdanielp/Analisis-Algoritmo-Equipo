@@ -1,0 +1,42 @@
+class Solution:
+    def largestNumber(self, nums):
+        parts = [str(num) for num in nums]
+
+        def comes_before(a, b):
+            return (a + b) > (b + a)
+
+        def merge_sort(arr):
+            if len(arr) <= 1:
+                return arr
+
+            mid = len(arr) // 2
+            left = merge_sort(arr[:mid])
+            right = merge_sort(arr[mid:])
+
+            merged = []
+            i = 0
+            j = 0
+
+            while i < len(left) and j < len(right):
+                if comes_before(left[i], right[j]):
+                    merged.append(left[i])
+                    i += 1
+                else:
+                    merged.append(right[j])
+                    j += 1
+
+            while i < len(left):
+                merged.append(left[i])
+                i += 1
+
+            while j < len(right):
+                merged.append(right[j])
+                j += 1
+
+            return merged
+
+        ordered = merge_sort(parts)
+        if ordered and ordered[0] == "0":
+            return "0"
+
+        return "".join(ordered)
