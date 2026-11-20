@@ -1,3 +1,4 @@
+#Ejercicio 7
 class Solution:
     def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
         if sum(gas) < sum(cost):
