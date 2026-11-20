@@ -74,3 +74,27 @@ Recurrencia: `dp[i] = max(dp[i], 1 + dp[j])` para todo `j < i` con `nums[j] < nu
 Idea: Para cada índice se revisan todos los anteriores y se extiende la mejor subsecuencia que termina en un valor menor. La respuesta es `max(dp)` y no `dp[n-1]`, porque la LIS más larga puede no terminar en el último elemento. No se ordena el arreglo porque eso destruye el orden de los índices\
 Complejidad: Con `n = nums.length`, `Θ(n²)` en tiempo y `Θ(n)` en espacio\
 Evidencia (Accepted): [300. Longest Increasing Subsequence.png](evidencias/300.%20Longest%20Increasing%20Subsequence.png)
+
+## 134. Gas Station
+
+Enlace al problema: [134. Gas Station](https://leetcode.com/problems/gas-station/)\
+Solución: [`134. Gas Station.py`](134.%20Gas%20Station.py)\
+Autor: Daniel Palacios Viveros (`DEVdanielp`)\
+Familia: greedy\
+Criterio: Se recorre el circuito una sola vez sumando `gas[i] - cost[i]` a un tanque. Si el tanque queda negativo en `i`, se descarta todo el tramo desde el inicio candidato hasta `i` y el nuevo candidato es `i + 1`, con el tanque otra vez en 0. No se vuelve atrás porque cada estación de ese tramo se alcanzó con tanque `>= 0`: empezar en ella (con tanque 0) es igual o peor, así que también se quedaría sin gasolina antes de `i + 1`\
+Idea: Primero, si `sum(gas) < sum(cost)` la vuelta es imposible y se retorna `-1`. Si la suma alcanza, hay exactamente un índice de salida y es el último candidato que queda al terminar la pasada: desde él el tanque nunca bajó de 0 hasta el final, y lo acumulado alcanza para cubrir el déficit del tramo descartado al inicio. Probar los `n` orígenes con una simulación cada uno sería `O(n²)`\
+Complejidad: Con `n = gas.length`, una sola pasada es `Θ(n)` en tiempo y `Θ(1)` de espacio extra\
+Evidencia (Accepted): [134. Gas Station.png](evidencias/134.%20Gas%20Station.png)
+
+## 79. Word Search
+
+Enlace al problema: [79. Word Search](https://leetcode.com/problems/word-search/)\
+Solución: [`79. Word Search.py`](79.%20Word%20Search.py)\
+Autor: Daniel Palacios Viveros (`DEVdanielp`)\
+Familia: backtracking\
+Estado: posición `(r, c)` en la grilla e índice `k` de la letra de `word` que toca encontrar\
+Se elige: un vecino ortogonal (arriba, abajo, izquierda o derecha; la diagonal no cuenta) cuya letra coincida con `word[k]`. La celda se marca como usada (se pisa con `'#'`) y se avanza a `k + 1`\
+Se deshace: si la rama no completa la palabra, se restaura la letra original de la celda (se quita la marca) y se prueba el siguiente vecino. Así la celda vuelve a estar disponible para otros caminos, pero nunca se usa dos veces en el mismo camino\
+Idea: Se lanza la búsqueda desde cada celda de la grilla. Si `k == word.length` se encontró la palabra; si la celda está fuera de la grilla, ya está marcada o no coincide con `word[k]`, esa rama se corta. Un greedy que sigue la primera letra que coincida se mete en un callejón sin probar los otros vecinos; por eso hay que marcar, seguir y desmarcar\
+Complejidad: Con una grilla de `m × n` y una palabra de longitud `L`, el peor caso es exponencial en `L`: desde cada una de las `m · n` celdas se exploran ramas de hasta 4 vecinos, del orden de `O(m · n · 4^L)` en tiempo. El espacio es `O(L)` por la pila de recursión (la marca se hace sobre la misma grilla)\
+Evidencia (Accepted): [79. Word Search.png](evidencias/79.%20Word%20Search.png)
