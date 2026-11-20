@@ -1,8 +1,8 @@
 | Integrante | Usuario de git | Ejercicios |
 | --- | --- | --- |
 | Samuel Castaño Herrera | `samuelcherrera` | 215, 179, 743 |
-| Manu | `ManuelitaG` | 1584, 72, 300 |
-| Dani | `DEVdanielp` | 134, 79 |
+| Manuela Gomez Chaparro | `ManuelitaG` | 1584, 72, 300 |
+| Daniel Palacios Viveros | `DEVdanielp` | 134, 79 |
 
 
 ## 215. Kth Largest Element in an Array
