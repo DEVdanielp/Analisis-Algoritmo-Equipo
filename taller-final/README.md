@@ -1,8 +1,8 @@
 | Integrante | Usuario de git | Ejercicios |
 | --- | --- | --- |
 | Samuel Castaño Herrera | `samuelcherrera` | 215, 179, 743 |
-| Manuela Gomez Chaparro | `ManuelitaG` | 1584, 72, 300 |
-| Daniel Palacios Viveros | `DEVdanielp` | 134, 79 |
+| Manu | `ManuelitaG` | 1584, 72, 300 |
+| Dani | `DEVdanielp` | 134, 79 |
 
 
 ## 215. Kth Largest Element in an Array
@@ -53,7 +53,7 @@ Evidencia (Accepted): [1584. Min Cost to Connect All Points.png](evidencias/1584
 
 Enlace al problema: [72. Edit Distance](https://leetcode.com/problems/edit-distance/)\
 Solución: [`72. Edit Distance.py`](72.%20Edit%20Distance.py)\
-Autor: Nombre Apellido (`usuario`)\
+Autor: Manuela Gomez Chaparro (`ManuelitaG`)\
 Familia: programación dinámica (tabla de Wagner–Fischer)\
 Estado: `dp[i][j]` = mínimo de ediciones para convertir `word1[0..i)` en `word2[0..j)`\
 Base: `dp[i][0] = i` (borrar `i` letras) y `dp[0][j] = j` (insertar `j` letras)\
@@ -66,7 +66,7 @@ Evidencia (Accepted): [72. Edit Distance.png](evidencias/72.%20Edit%20Distance.p
 
 Enlace al problema: [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)\
 Solución: [`300. Longest Increasing Subsequence.py`](300.%20Longest%20Increasing%20Subsequence.py)\
-Autor: Nombre Apellido (`usuario`)\
+Autor: Manuela Gomez Chaparro (`ManuelitaG`)\
 Familia: programación dinámica\
 Estado: `dp[i]` = longitud de la subsecuencia estrictamente creciente más larga que termina en el índice `i`\
 Base: `dp[i] = 1` (el elemento solo)\
